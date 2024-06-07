@@ -9,7 +9,7 @@ const Coin = ({ setCount, count ,setDecrementCount }) => {
     
 
     const initialBar = 1000;
-    const tapNumber = 1;
+    const tapNumber = 5;
     var decrementValue = 5;
 
     const [progress, setProgress] = useState(initialBar);
@@ -74,7 +74,7 @@ const Coin = ({ setCount, count ,setDecrementCount }) => {
           </span>
         )}
                 <h2
-                    className={`cursor-pointer text-9xl ${animate ? 'animate-pop' : ''}`}
+                    className={`cursor-pointer  text-[240px] ${animate ? 'animate-pop' : ''}`}
                     onClick={handleClick}
                 >
                     🍬

@@ -80,10 +80,16 @@ const Coin = ({ setCount, count ,setDecrementCount }) => {
                     🍬
                 </h2>
             </div>
-            <h2 className="text-white bottom-0 fixed mb-28 text-xl text-center items-center">
-            ⚡{progress}/{initialBar}
-            </h2>
-            <CoinBar progress={progress} />
+
+            <div className="flex flex-col items-center justify-center h-screen">
+  <h2 className="text-white text-xl mb-4 text-center fixed bottom-28">
+    ⚡{progress}/{initialBar}
+  </h2>
+  <div className="w-full flex justify-center">
+    <CoinBar progress={progress} />
+  </div>
+</div>
+
         </>
     );
 };

@@ -10,7 +10,8 @@ const Stats = ({ decrementCount, count }) => {
 
         <div className="mt-10">
         <h2 className="text-center text-xl ">Total Touches</h2>
-        <CoinBalance decrementCount={decrementCount}/>
+        <h2 className="text-5xl text-center mt-5 text-white font-bold ">{decrementCount}</h2>
+        
         </div>
         </>
      );

@@ -5,10 +5,10 @@ import { Link } from 'react-router-dom';
 
 const BottomMenu = () => {
   return (
-    <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-500 shadow-lg">
+    <div className="fixed bottom-0 left-0 right-0 bg-neutral-300 border-t border-gray-500 shadow-lg">
       <div className="flex justify-around py-2 ">
         <Link to='/refer'>
-        <MenuItem icon="👩🏼‍🤝‍🧑🏻" name="Refer" />
+        <MenuItem icon="👪" name="Refer" />
         </Link>
         
         <Link to='/task'>

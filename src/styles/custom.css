@@ -1,0 +1,36 @@
+/* src/styles/custom.css */
+.glowing-gradient {
+    background: linear-gradient(45deg, #1a7c17 0%, #0c92bb 99%, #35ac2b 100%);
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 
+                0 2px 4px rgba(0, 0, 0, 0.06), 
+                0 20px 20px rgba(5, 146, 5, 0.5), 
+                0 20px 20px rgba(0, 0, 0, 0.5);
+    padding: 1rem;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+  
+
+.shadow {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 
+                0 2px 4px rgba(0, 0, 0, 0.06), 
+                0 20px 20px rgba(5, 146, 5, 0.5), 
+                0 20px 20px rgba(0, 0, 0, 0.5);
+}
+@keyframes pop {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.2);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  
+  .animate-pop {
+    animation: pop 0.3s ease-in-out;
+  }
+  

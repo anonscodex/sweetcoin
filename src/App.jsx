@@ -8,6 +8,7 @@ import { BrowserRouter, Route , Routes } from "react-router-dom"
 import Stats from "./components/Stats"
 import Boost from "./components/Boost"
 import Task from "./components/Task"
+import Refer from "./components/Refer"
 
 
 function App() {
@@ -28,9 +29,10 @@ function App() {
       <Container>
          <Routes>
           <Route path="/" element = {<Coin count={count} setCount={setCount} setDecrementCount={setDecrementCount}/>} />
-          <Route path="/stats" element = {<Stats count={count} setCount={setCount} decrementCount={decrementCount} setDecrementCount={setDecrementCount}/>} />
-          <Route path="/boost" element = {<Boost count={count} setCount={setCount} />} />
-          <Route path="/task" element = {<Task task={task} count={count} setCount={setCount}/>} />
+          <Route path="stats" element = {<Stats count={count} setCount={setCount} decrementCount={decrementCount} setDecrementCount={setDecrementCount}/>} />
+          <Route path="boost" element = {<Boost count={count} setCount={setCount} />} />
+          <Route path="task" element = {<Task task={task} count={count} setCount={setCount}/>} />
+          <Route path="refer" element = {<Refer />} />
         </Routes>
         <BottomMenu />
       </Container>

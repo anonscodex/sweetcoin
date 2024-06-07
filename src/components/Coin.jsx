@@ -9,7 +9,7 @@ const Coin = ({ setCount, count ,setDecrementCount }) => {
     
 
     const initialBar = 1000;
-    const tapNumber = 5;
+    const tapNumber = 1;
     var decrementValue = 5;
 
     const [progress, setProgress] = useState(initialBar);

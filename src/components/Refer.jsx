@@ -43,6 +43,16 @@ const Refer = () => {
       </div>
     </div>
 
+    <div className="mt-6 flex flex-col items-center">
+            <div className="mt-5">
+                <div className="flex justify-evenly gap-3"> 
+            <h2 className="text-xl text-white ">You have no Referrals😭</h2>
+                </div>
+
+
+            </div>
+            </div>
+
         </>
      );
 }

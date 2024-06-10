@@ -27,7 +27,7 @@ const Boost = ({count}) => {
         
         <div className=""> <h2 className="text-2xl ml-4">Your daily boosters</h2></div>
 
-    <div className="flex gap-5 mt-4">
+    <div className="flex justify-evenly gap-5 mt-4">
 
 
 

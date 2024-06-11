@@ -1,6 +1,14 @@
 import CoinBalance from "./CoinBalance";
+import { useEffect } from "react";
 
 const Stats = ({ decrementCount, count }) => {
+
+// save tap times here
+useEffect(() => {
+    localStorage.setItem('tap', decrementCount);
+  }, [decrementCount]);
+
+  
     return ( 
         <>
         <div className="mt-10">

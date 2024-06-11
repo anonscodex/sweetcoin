@@ -17,7 +17,10 @@ function App() {
     const savedCount = localStorage.getItem('sweetCount');
     return savedCount !== null ? JSON.parse(savedCount) : 0;
   });
-  const [decrementCount, setDecrementCount] = useState(0);
+  const [decrementCount, setDecrementCount] = useState(() => {
+    const savedCount = localStorage.getItem('tap');
+    return savedCount !== null ? JSON.parse(savedCount) : 0;
+  });
 
 
   

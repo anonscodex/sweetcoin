@@ -4,7 +4,7 @@ import CoinBar from "./CoinBar";
 import CoinBalance from "./CoinBalance";
 import { formatNumber } from "../utils/FormatNumber";
 
-const Coin = ({ setCount, count, setDecrementCount }) => {
+const Coin = ({ setCount, count, setDecrementCount, decrementCount  }) => {
   const [animate, setAnimate] = useState(false);
   const initialBar = 1000;
   const tapNumber = 5;
@@ -14,14 +14,7 @@ const Coin = ({ setCount, count, setDecrementCount }) => {
     return savedProgress !== null ? JSON.parse(savedProgress) : initialBar;
   });
   const [restoreProgress, setRestoreProgress] = useState(false);
-
-  // Load count from localStorage when the component mounts
-  useEffect(() => {
-    const savedCount = localStorage.getItem('sweetCount');
-    if (savedCount !== null) {
-      setCount(Number(savedCount));
-    }
-  }, [setCount]);
+ 
 
   // Save count to localStorage whenever it changes
   useEffect(() => {
@@ -32,6 +25,9 @@ const Coin = ({ setCount, count, setDecrementCount }) => {
   useEffect(() => {
     localStorage.setItem('progress', JSON.stringify(progress));
   }, [progress]);
+
+ 
+
 
   useEffect(() => {
     let interval;
@@ -56,7 +52,7 @@ const Coin = ({ setCount, count, setDecrementCount }) => {
 
     setCount(prevCount => {
       const newCount = !isNaN(prevCount) ? prevCount + tapNumber : tapNumber;
-      localStorage.setItem('sweetCount', newCount);
+    //  localStorage.setItem('sweetCount', newCount);
       return newCount;
     });
 

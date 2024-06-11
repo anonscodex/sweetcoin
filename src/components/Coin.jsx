@@ -9,14 +9,16 @@ const Coin = ({ setCount, count, setDecrementCount }) => {
   const initialBar = 1000;
   const tapNumber = 5;
   const decrementValue = 5;
-
-  const [progress, setProgress] = useState(initialBar);
+  const [progress, setProgress] = useState(() => {
+    const savedProgress = localStorage.getItem('progress');
+    return savedProgress !== null ? JSON.parse(savedProgress) : initialBar;
+  });
   const [restoreProgress, setRestoreProgress] = useState(false);
 
   // Load count from localStorage when the component mounts
   useEffect(() => {
     const savedCount = localStorage.getItem('sweetCount');
-    if (savedCount) {
+    if (savedCount !== null) {
       setCount(Number(savedCount));
     }
   }, [setCount]);
@@ -25,6 +27,11 @@ const Coin = ({ setCount, count, setDecrementCount }) => {
   useEffect(() => {
     localStorage.setItem('sweetCount', count);
   }, [count]);
+
+  // Save progress to localStorage whenever it changes
+  useEffect(() => {
+    localStorage.setItem('progress', JSON.stringify(progress));
+  }, [progress]);
 
   useEffect(() => {
     let interval;
@@ -47,37 +54,32 @@ const Coin = ({ setCount, count, setDecrementCount }) => {
   const handleClick = () => {
     if (progress <= 0) return;
 
-    if (!isNaN(count)) {
-      setCount(count + tapNumber);
-    } else {
-      setCount(tapNumber); // Default to tapNumber if count is NaN
-    }
+    setCount(prevCount => {
+      const newCount = !isNaN(prevCount) ? prevCount + tapNumber : tapNumber;
+      localStorage.setItem('sweetCount', newCount);
+      return newCount;
+    });
 
     setDecrementCount(prevCount => prevCount + 1); // Increment decrement count
     setAnimate(true);
     setTimeout(() => setAnimate(false), 300);
 
     // update bar
-    if (!isNaN(progress) && progress > 0) {
-      setProgress(prevProgress => {
-        const newProgress = prevProgress - decrementValue;
-        if (newProgress <= 0) {
-          setRestoreProgress(true);
-          return 0;
-        } else {
-          return newProgress;
-        }
-      });
-    } else {
-      setProgress(initialBar); // Reset to initialBar if progress is NaN
-    }
+    setProgress(prevProgress => {
+      const newProgress = prevProgress - decrementValue;
+      if (newProgress <= 0) {
+        setRestoreProgress(true);
+        return 0;
+      } else {
+        return newProgress;
+      }
+    });
   };
 
   return (
     <>
       <CoinBalance count={count} />
       <div className="flex flex-col items-center justify-center p-8 m-4">
-        {/* Display decrement count with popping up effect */}
         {animate && (
           <span className="text-neutral-500 text-3xl font-bold absolute top-30 z-50">
             +{formatNumber(decrementValue)}

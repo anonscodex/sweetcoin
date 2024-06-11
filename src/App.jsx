@@ -9,25 +9,17 @@ import Stats from "./components/Stats"
 import Boost from "./components/Boost"
 import Task from "./components/Task"
 import Refer from "./components/Refer"
-import { useEffect } from "react"
+
 
 
 function App() {
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(() => {
+    const savedCount = localStorage.getItem('sweetCount');
+    return savedCount !== null ? JSON.parse(savedCount) : 0;
+  });
   const [decrementCount, setDecrementCount] = useState(0);
 
-   // Load count from localStorage when the component mounts
-   useEffect(() => {
-    const savedCount = localStorage.getItem('sweetCount');
-    if (savedCount) {
-      setCount(Number(savedCount));
-    }
-  }, [setCount]);
 
-  // Save count to localStorage whenever it changes
-  useEffect(() => {
-    localStorage.setItem('sweetCount', count);
-  }, [count]);
   
   const task = {
     title: 'Follow our Twitter Page',

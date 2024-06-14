@@ -4,7 +4,7 @@ import CoinBar from "./CoinBar";
 import CoinBalance from "./CoinBalance";
 import { formatNumber } from "../utils/FormatNumber";
 
-const Coin = ({ setCount, count, setDecrementCount, decrementCount  }) => {
+const Coin = ({ setCount, count, setDecrementCount, decrementCount, setResetProgress }) => {
   const [animate, setAnimate] = useState(false);
   const initialBar = 1000;
   const tapNumber = 5;
@@ -14,20 +14,14 @@ const Coin = ({ setCount, count, setDecrementCount, decrementCount  }) => {
     return savedProgress !== null ? JSON.parse(savedProgress) : initialBar;
   });
   const [restoreProgress, setRestoreProgress] = useState(false);
- 
 
-  // Save count to localStorage whenever it changes
   useEffect(() => {
     localStorage.setItem('sweetCount', count);
   }, [count]);
 
-  // Save progress to localStorage whenever it changes
   useEffect(() => {
     localStorage.setItem('progress', JSON.stringify(progress));
   }, [progress]);
-
- 
-
 
   useEffect(() => {
     let interval;
@@ -41,26 +35,18 @@ const Coin = ({ setCount, count, setDecrementCount, decrementCount  }) => {
             return initialBar;
           }
         });
-      }, 1000); // Adjust interval time as needed
+      }, 1000);
     }
-
     return () => clearInterval(interval);
   }, [restoreProgress]);
 
   const handleClick = () => {
     if (progress <= 0) return;
-
-    setCount(prevCount => {
-      const newCount = !isNaN(prevCount) ? prevCount + tapNumber : tapNumber;
-    //  localStorage.setItem('sweetCount', newCount);
-      return newCount;
-    });
-
-    setDecrementCount(prevCount => prevCount + 1); // Increment decrement count
+    setCount(prevCount => prevCount + tapNumber);
+    setDecrementCount(prevCount => prevCount + 1);
     setAnimate(true);
     setTimeout(() => setAnimate(false), 300);
 
-    // update bar
     setProgress(prevProgress => {
       const newProgress = prevProgress - decrementValue;
       if (newProgress <= 0) {
@@ -71,6 +57,14 @@ const Coin = ({ setCount, count, setDecrementCount, decrementCount  }) => {
       }
     });
   };
+
+  const handleResetProgress = () => {
+    setProgress(initialBar);
+  };
+
+  useEffect(() => {
+    setResetProgress(() => handleResetProgress);
+  }, [setResetProgress]);
 
   return (
     <>
@@ -88,7 +82,6 @@ const Coin = ({ setCount, count, setDecrementCount, decrementCount  }) => {
           🍬
         </h2>
       </div>
-
       <div className="flex flex-col items-center justify-center h-screen">
         <h2 className="text-white text-xl mb-4 text-center fixed bottom-28">
           ⚡{progress}/{initialBar}

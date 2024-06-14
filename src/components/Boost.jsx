@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import CoinBalance from './CoinBalance';
 import Modal from './Modal';
 
-const Boost = ({ count }) => {
+const Boost = ({ count, setResetProgress }) => {
   const initialBoosters = {
     'Tapping Guru': 3,
     'Full Tank': 3,
@@ -44,6 +44,10 @@ const Boost = ({ count }) => {
       setBoosters(updatedBoosters);
       localStorage.setItem('boosters', JSON.stringify(updatedBoosters));
       console.log(`Booster "${selectedBooster}" used! Effect applied to the home app.`);
+
+      if (selectedBooster === 'Full Tank') {
+        resetProgress(); // Reset progress when "Full Tank" is used
+      }
     } else {
       console.log(`No uses left for "${selectedBooster}".`);
     }

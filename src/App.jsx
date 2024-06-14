@@ -22,6 +22,11 @@ function App() {
     return savedCount !== null ? JSON.parse(savedCount) : 0;
   });
 
+  const [resetProgress, setResetProgress] = useState(() => () => {});
+
+ 
+
+ 
 
   
   const task = {
@@ -37,9 +42,9 @@ function App() {
       
       <Container>
          <Routes>
-          <Route path="/" element = {<Coin count={count} setCount={setCount} setDecrementCount={setDecrementCount}/>} />
+          <Route path="/" element = {<Coin count={count} setCount={setCount} setDecrementCount={setDecrementCount}    setResetProgress={setResetProgress}  />} />
           <Route path="stats" element = {<Stats count={count} setCount={setCount} decrementCount={decrementCount} setDecrementCount={setDecrementCount}/>} />
-          <Route path="boost" element = {<Boost count={count} setCount={setCount} />} />
+          <Route path="boost" element = {<Boost count={count} setCount={setCount} resetProgress={resetProgress}/>} />
           <Route path="task" element = {<Task task={task} count={count} setCount={setCount}/>} />
           <Route path="refer" element = {<Refer />} />
         </Routes>
